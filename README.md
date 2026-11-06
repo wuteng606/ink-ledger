@@ -71,8 +71,8 @@
 
 到 [Releases](https://github.com/wuteng606/ink-ledger/releases) 下载：
 
-- **macOS（Universal，Apple Silicon + Intel）**：`*_universal.dmg`，打开后把「墨账」拖进「应用程序」
-- **Windows**：`*_x64-setup.exe`，双击安装
+- **macOS（Universal，Apple Silicon + Intel）**：`Ink_Ledger_*_universal.dmg`，打开后把 `Ink Ledger` 拖进「应用程序」
+- **Windows**：`Ink_Ledger_*_x64-setup.exe`，双击安装
 
 > 安装包未做代码签名 / 公证：
 > - macOS 首次打开若被系统拦下，右键 App →「打开」，或到「系统设置 › 隐私与安全性」里放行。

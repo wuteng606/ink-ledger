@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "墨账",
+  "productName": "Ink Ledger",
   "version": "0.1.0",
   "identifier": "com.inkledger.desktop",
   "build": {
@@ -52,7 +52,10 @@
       "icons/icon.ico"
     ],
     "macOS": {
-      "minimumSystemVersion": "11.0"
+      "minimumSystemVersion": "11.0",
+      "infoPlist": {
+        "CFBundleDisplayName": "墨账"
+      }
     }
   }
 }

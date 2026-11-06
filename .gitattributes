@@ -1,0 +1,3 @@
+# 设计稿与文档不参与 GitHub 语言统计
+design/*.html linguist-documentation
+docs/*.md   linguist-documentation

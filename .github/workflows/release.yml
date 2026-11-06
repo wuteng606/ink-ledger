@@ -14,8 +14,8 @@ env:
   RELEASE_BODY: |
     一个本地记账本：记一笔、看分类、管预算。金额用整数「分」存储，账户余额由流水算出来，账永远对得上。
 
-    **Windows**：下载 `Ink_Ledger_*_x64-setup.exe`，双击安装。
-    **macOS（Universal，Apple Silicon + Intel）**：下载 `Ink_Ledger_*_universal.dmg`，打开后把 `Ink Ledger` 拖进「应用程序」。
+    **Windows**：下载 `Ink.Ledger_*_x64-setup.exe`，双击安装。
+    **macOS（Universal，Apple Silicon + Intel）**：下载 `Ink.Ledger_*_universal.dmg`，打开后把 `Ink Ledger` 拖进「应用程序」。
 
     > 安装包未做代码签名 / 公证：
     > - Windows SmartScreen 提示"未知发布者"时，点「更多信息 → 仍要运行」。

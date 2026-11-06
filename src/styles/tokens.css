@@ -1,0 +1,65 @@
+/* ============================================================
+   设计令牌 —— 深色 / 浅色两套
+   ============================================================ */
+
+:root,
+body[data-theme="dark"] {
+  --bg: #07080a;
+  --win: #0e1014;
+  --sb: #0b0d11;
+  --card: #14171d;
+  --card-2: #181c23;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-2: rgba(255, 255, 255, 0.12);
+  --tx: #e8ebf1;
+  --tx-2: #98a1b0;
+  --tx-3: #5f6773;
+  --field: rgba(255, 255, 255, 0.04);
+  --hover: rgba(255, 255, 255, 0.05);
+
+  --gold: #e8b464;
+  --gold-2: #f2c988;
+  --gold-soft: rgba(232, 180, 100, 0.12);
+  --btn-bg: #e8b464;
+  --btn-fg: #1a1206;
+
+  --exp: #ff7d6e;
+  --inc: #48cf9b;
+
+  --shadow-pop: 0 40px 90px -30px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --shadow-bar: 0 8px 18px -10px rgba(0, 0, 0, 0.8);
+}
+
+body[data-theme="light"] {
+  --bg: #e4e7ec;
+  --win: #f7f8fa;
+  --sb: #eceef2;
+  --card: #ffffff;
+  --card-2: #f4f6f9;
+  --line: rgba(15, 20, 30, 0.085);
+  --line-2: rgba(15, 20, 30, 0.14);
+  --tx: #14181f;
+  --tx-2: #5b6574;
+  --tx-3: #98a1ad;
+  --field: rgba(15, 20, 30, 0.045);
+  --hover: rgba(15, 20, 30, 0.045);
+
+  --gold: #a9762a;
+  --gold-2: #8c6220;
+  --gold-soft: rgba(176, 125, 40, 0.12);
+  --btn-bg: #b8822f;
+  --btn-fg: #ffffff;
+
+  --exp: #d34f45;
+  --inc: #128e60;
+
+  --shadow-pop: 0 40px 90px -30px rgba(30, 40, 60, 0.5), inset 0 1px 0 #fff;
+  --shadow-bar: 0 8px 18px -12px rgba(30, 40, 60, 0.4);
+}
+
+:root {
+  --r: 14px;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
+    "Hiragino Sans GB", "Helvetica Neue", sans-serif;
+}

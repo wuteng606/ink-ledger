@@ -1,0 +1,107 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  # 手动触发：Actions 页面点 Run workflow，同样会构建并发布到 Release
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  RELEASE_BODY: |
+    一个本地记账本：记一笔、看分类、管预算。金额用整数「分」存储，账户余额由流水算出来，账永远对得上。
+
+    **Windows**：下载 `*_x64-setup.exe`，双击安装。
+    **macOS（Universal，Apple Silicon + Intel）**：下载 `*_universal.dmg`，打开后把「墨账」拖进「应用程序」。
+
+    > 安装包未做代码签名 / 公证：
+    > - Windows SmartScreen 提示"未知发布者"时，点「更多信息 → 仍要运行」。
+    > - macOS 首次打开若被系统拦下，右键 App →「打开」，或到「系统设置 › 隐私与安全性」里放行。
+
+jobs:
+  windows:
+    name: Build Windows installer
+    runs-on: windows-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Rust
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+          key: windows-x64
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build and publish to Release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # v__VERSION__ 会被替换成 tauri.conf.json 里的 version
+          tagName: v__VERSION__
+          releaseName: "墨账 v__VERSION__"
+          releaseBody: ${{ env.RELEASE_BODY }}
+          releaseDraft: false
+          prerelease: false
+          # 只出 NSIS 安装包（exe）；想同时出 MSI 改成 --bundles nsis,msi
+          args: --bundles nsis
+
+  macos:
+    name: Build macOS app (universal)
+    runs-on: macos-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          # 同时装两个架构，产出 Apple Silicon + Intel 通用包
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+
+      - name: Cache Rust
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+          key: macos-universal
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build and publish to Release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: v__VERSION__
+          releaseName: "墨账 v__VERSION__"
+          releaseBody: ${{ env.RELEASE_BODY }}
+          releaseDraft: false
+          prerelease: false
+          # 通用二进制 + 默认的 app / dmg 产物
+          args: --target universal-apple-darwin

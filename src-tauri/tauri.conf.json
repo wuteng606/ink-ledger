@@ -52,10 +52,7 @@
       "icons/icon.ico"
     ],
     "macOS": {
-      "minimumSystemVersion": "11.0",
-      "infoPlist": {
-        "CFBundleDisplayName": "墨账"
-      }
+      "minimumSystemVersion": "11.0"
     }
   }
 }

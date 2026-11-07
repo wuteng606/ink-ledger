@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: 1080px 1440px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px; overflow: hidden; position: relative;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", system-ui, sans-serif;
+    color: #F2F4F8;
+    background:
+      radial-gradient(920px 720px at 20% -8%, rgba(232,180,100,.20), rgba(232,180,100,0) 62%),
+      radial-gradient(720px 600px at 100% 100%, rgba(78,120,210,.13), rgba(78,120,210,0) 60%),
+      linear-gradient(168deg, #12151C 0%, #0C0E13 50%, #08090C 100%);
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(680px 680px at 50% 24%, #000 0%, transparent 78%);
+  }
+  .wrap { position: relative; height: 100%; padding: 72px 78px 60px;
+          display: flex; flex-direction: column; }
+
+  .topbar { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .logo {
+    width: 54px; height: 54px; border-radius: 16px;
+    background: linear-gradient(150deg, #F2C988, #C0892C);
+    box-shadow: 0 12px 26px rgba(200,140,52,.3), inset 0 1px 0 rgba(255,255,255,.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 700; color: #1A1206;
+  }
+  .brand-t { font-size: 24px; font-weight: 700; color: #EDEFF4; }
+  .kbd-pill {
+    padding: 10px 20px; border-radius: 999px; font-size: 18px; font-weight: 600;
+    color: #E8B464; background: rgba(232,180,100,.10);
+    border: 1px solid rgba(232,180,100,.26);
+    font-family: "SF Mono", Menlo, monospace;
+  }
+
+  h1 {
+    margin-top: 46px;
+    font-size: 88px; line-height: 1.16; letter-spacing: -2.5px; font-weight: 800;
+  }
+  h1 .hl {
+    background: linear-gradient(170deg, #F8DCA8 0%, #E8B464 46%, #C0892C 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { margin-top: 24px; font-size: 30px; color: #98A1B2; font-weight: 500; }
+  .sub b { color: #E8B464; font-weight: 600; }
+
+  /* 模拟桌面：浮窗真的浮在别的东西上面 */
+  .stage {
+    margin: 44px 0 auto; align-self: center;
+    width: 100%; height: 680px;
+    position: relative; border-radius: 26px; overflow: hidden;
+    background:
+      radial-gradient(700px 460px at 26% 18%, rgba(96,120,190,.24), rgba(96,120,190,0) 62%),
+      radial-gradient(620px 420px at 84% 86%, rgba(232,180,100,.16), rgba(232,180,100,0) 64%),
+      linear-gradient(150deg, #1B2130 0%, #141821 52%, #0E1118 100%);
+    border: 1px solid rgba(255,255,255,.07);
+    display: grid; place-items: center;
+  }
+  /* 背后若隐若现的"别的窗口" */
+  .ghost {
+    position: absolute; border-radius: 14px;
+    background: rgba(255,255,255,.038);
+    border: 1px solid rgba(255,255,255,.05);
+  }
+  .g1 { width: 560px; height: 360px; left: -80px; top: 46px; }
+  .g2 { width: 460px; height: 300px; right: -70px; bottom: 30px; }
+  .ghost { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.07); }
+  .ghost { background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.07); }
+  .g1::before, .g2::before {
+    content: ""; position: absolute; left: 18px; top: 16px;
+    width: 44px; height: 8px; border-radius: 4px; background: rgba(255,255,255,.10);
+    box-shadow: 0 18px 0 rgba(255,255,255,.055), 0 36px 0 rgba(255,255,255,.04),
+                0 54px 0 rgba(255,255,255,.03), 0 72px 0 rgba(255,255,255,.025);
+  }
+
+  .pop {
+    position: relative; width: 760px;
+    filter: drop-shadow(0 46px 70px rgba(0,0,0,.85));
+  }
+  .pop img { display: block; width: 100%; }
+
+  .chips { margin-top: auto; display: flex; gap: 16px; }
+  .chip {
+    flex: 1; padding: 24px 14px; border-radius: 22px; text-align: center;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.07);
+  }
+  .chip .k { font-size: 26px; font-weight: 800; color: #F0E2C8; }
+  .chip .v { margin-top: 6px; font-size: 17px; color: #78818F; }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">账</div>
+        <div class="brand-t">墨账 Ink Ledger</div>
+      </div>
+      <div class="kbd-pill">⌥ ⌘ N</div>
+    </div>
+
+    <h1>记一笔<br><span class="hl">不用打开软件</span></h1>
+
+    <div class="sub">浮窗从菜单栏落下来，<b>记完自动收起</b></div>
+
+    <div class="stage">
+      <div class="ghost g1"></div>
+      <div class="ghost g2"></div>
+      <div class="pop">
+        <img src="file:///Volumes/Extra/Projects/workbuddy/mini-tool/mini-ledger/design/screenshot-quick.png">
+      </div>
+    </div>
+
+    <div class="chips">
+      <div class="chip"><div class="k">不打断</div><div class="v">人还在原来的窗口</div></div>
+      <div class="chip"><div class="k">全屏可用</div><div class="v">看视频也压不住它</div></div>
+      <div class="chip"><div class="k">回车即存</div><div class="v">不用点保存按钮</div></div>
+    </div>
+  </div>
+</body>
+</html>
